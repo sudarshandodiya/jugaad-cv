@@ -1,69 +1,229 @@
-# The `my-package` Package
+# Typst Resume Template
 <div align="center">Version 0.1.0</div>
 
-A short description about the project and/or client.
+A modern, modular Typst resume template designed for experienced professionals (3+ years). Features clean design, heroicons integration, and project-focused work experience organization.
 
-## Template adaptation checklist
+## Features
 
-- [ ] Fill out `README.md`
-  - Change the `my-package` package name, including code snippets
-  - Check section contents and/or delete sections that don't apply
-- [ ] Check and/or replace `LICENSE` by something that suits your needs
-- [ ] Fill out `typst.toml`
-  - See also the [typst/packages README](https://github.com/typst/packages/?tab=readme-ov-file#package-format)
-- [ ] Adapt Repository URLs in `CHANGELOG.md`
-  - Consider only committing that file with your first release, or removing the "Initial Release" part in the beginning
-- [ ] Adapt or deactivate the release workflow in `.github/workflows/release.yml`
-  - to deactivate it, delete that file or remove/comment out lines 2-4 (`on:` and following)
-  - to use the workflow
-    - [ ] check the values under `env:`, particularly `REGISTRY_REPO`
-    - [ ] if you don't have one, [create a fine-grained personal access token](https://github.com/settings/tokens?type=beta) with [only Contents permission](https://stackoverflow.com/a/75116350/371191) for the `REGISTRY_REPO`
-    - [ ] on this repo, create a secret `REGISTRY_TOKEN` (at `https://github.com/[user]/[repo]/settings/secrets/actions`) that contains the so created token
+- **Modern Design**: Clean, professional layout with consistent typography and spacing
+- **Heroicons Integration**: Beautiful icons throughout the resume using the heroicons package
+- **Modular Structure**: Highly customizable and reusable components
+- **Project-Focused**: Work experience organized by projects/topics rather than just positions
+- **Experience-Oriented**: Designed for professionals with 3+ years of experience
+- **Responsive Layout**: Optimized for standard letter-size paper and PDF generation
 
-    if configured correctly, whenever you create a tag `v...`, your package will be pushed onto a branch on the `REGISTRY_REPO`, from which you can then create a pull request against [typst/packages](https://github.com/typst/packages/)
-- [ ] remove/replace the example test case
-- [ ] (add your actual code, docs and tests)
-- [ ] remove this section from the README
+## Sections Included
 
-## Getting Started
+1. **Personal Information Header**: Large, prominent display with contact details
+2. **Work Experience**: Project-focused organization with company, role, and key projects
+3. **Education**: Academic background with GPA, honors, and relevant coursework
+4. **Technical Skills**: Categorized by languages, frameworks, tools, databases, cloud, etc.
+5. **Personal Projects**: Optional section for personal/open-source projects
 
-These instructions will get you a copy of the project up and running on the typst web app. Perhaps a short code example on importing the package and a very simple teaser usage.
+## Quick Start
 
+1. **Install Dependencies**: Make sure you have the heroic package available:
+   ```bash
+   # The template uses @preview/heroic:0.1.0 (heroicons for Typst)
+   ```
+
+2. **Use the Template**: Import and use the resume template in your Typst file:
+   ```typ
+   #import "src/lib.typ": *
+
+   #show: resume.with(
+     name: "Your Name",
+     title: "Your Professional Title",
+     email: "your.email@example.com",
+     phone: "+1 (555) 123-4567",
+     location: "City, State",
+     linkedin: "linkedin-username",
+     github: "github-username",
+     website: "https://your-website.com", // optional
+   )
+
+   == Work Experience
+
+   #work-experience(
+     title: "Your Position",
+     company: "Company Name",
+     location: "Location",
+     start-date: "Start Date",
+     end-date: "End Date",
+     description: (
+       "Key responsibility or achievement",
+       "Another important accomplishment",
+     ),
+     projects: (
+       (
+         name: "Project Name",
+         points: (
+           "Specific achievement with quantified impact",
+           "Technical implementation detail",
+         )
+       ),
+     )
+   )
+
+   // Add more sections...
+   ```
+
+3. **Customize**: See `example.typ` for a complete working example with all sections filled out.
+
+## Template Structure
+
+The template is built with modularity in mind. Here's how it's organized:
+
+### Core Components
+
+- **`resume()`**: Main function that sets up the document and calls all sections
+- **`header()`**: Personal information display with contact details and icons
+- **`work-experience()`**: Work history with project-focused organization
+- **`education()`**: Academic background section
+- **`skills()`**: Technical skills organized by categories
+- **`projects()`**: Personal projects section (optional)
+
+### Styling System
+
+- **Colors**: Consistent color scheme with primary, secondary, and accent colors
+- **Typography**: Professional font choices with proper hierarchy
+- **Spacing**: Consistent spacing system throughout the document
+- **Icons**: Heroicons integration for visual enhancement
+
+## Customization
+
+### Personal Information
 ```typ
-#import "@preview/my-package:0.1.0": *
-
-#show: my-show-rule.with()
-#my-func()
+#show: resume.with(
+  name: "Your Name",
+  title: "Your Professional Title",
+  email: "your.email@example.com",
+  phone: "+1 (555) 123-4567",
+  location: "City, State",
+  linkedin: "linkedin-username",
+  github: "github-username",
+  website: "https://your-website.com", // optional
+  accent-color: "#2563eb", // optional, default blue
+  font: ("Times New Roman", "Times"), // optional, default Times New Roman
+)
 ```
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./thumbnail-dark.svg">
-  <img src="./thumbnail-light.svg">
-</picture>
-
-### Installation
-
-A step by step guide that will tell you how to get the development environment up and running. This should explain how to clone the repo and where to (maybe a link to the typst documentation on it), along with any pre-requisite software and installation steps.
-
-```
-$ First step
-$ Another step
-$ Final step
-```
-
-## Usage
-
-A more in-depth description of usage. Any template arguments? A complicated example that showcases most if not all of the functions the package provides? This is also an excellent place to signpost the manual.
-
+### Work Experience (Project-Focused)
 ```typ
-#import "@preview/my-package:0.1.0": *
+== Work Experience
 
-#let my-complicated-example = ...
+#work-experience(
+  title: "Your Position",
+  company: "Company Name",
+  location: "City, State",
+  start-date: "Jan 2022",
+  end-date: "Present", // or specific end date
+  description: (
+    "Key responsibility or achievement",
+    "Another important accomplishment",
+  ),
+  projects: (
+    (
+      name: "Project Name",
+      points: (
+        "Specific achievement with quantified impact",
+        "Technical implementation detail",
+        "Quantified result or outcome",
+      )
+    ),
+    (
+      name: "Another Project",
+      points: (
+        "What you built and its impact",
+        "Technologies used and challenges solved",
+      )
+    ),
+  )
+)
 ```
 
-## Additional Documentation and Acknowledgments
+### Education
+```typ
+== Education
 
-* Project folder on server:
-* Confluence link:
-* Asana board:
-* etc...
+#education(
+  institution: "University Name",
+  degree: "Bachelor of Science",
+  field: "Computer Science", // field of study
+  location: "City, State",
+  start-date: "Aug 2014",
+  end-date: "May 2018",
+  gpa: 3.7, // use none if you don't want to show
+  honors: ("Magna Cum Laude", "Dean's List"), // honors
+)
+```
+
+### Skills
+```typ
+== Technical Skills
+
+#skills-section(
+  languages: ("JavaScript", "Python", "Java"),
+  frameworks: ("React", "Django", "Spring"),
+  tools: ("Git", "Docker", "Kubernetes"),
+  databases: ("PostgreSQL", "MongoDB", "Redis"),
+  cloud: ("AWS", "Google Cloud", "Azure"),
+  other: ("GraphQL", "REST APIs", "Microservices"),
+)
+```
+
+### Personal Projects
+```typ
+== Personal Projects
+
+#project(
+  name: "Project Name",
+  role: "Lead Developer", // optional
+  url: "github.com/username/project", // optional
+  start-date: "2023",
+  end-date: "", // leave empty for single date
+)
+• Brief description of what you built and its impact
+• Technologies used and challenges solved
+• Quantified results or outcomes
+```
+
+## Design Philosophy
+
+This template is specifically designed for **experienced professionals** (3+ years) with the following principles:
+
+1. **Project-Focused Work Experience**: Projects are displayed as headings with bullet points underneath, emphasizing specific achievements and impact rather than generic job duties
+2. **Compact Layout**: Inspired by Jake's resume template with minimal padding and efficient use of space
+3. **Scannable Structure**: Easy for recruiters and hiring managers to quickly identify key projects and accomplishments
+4. **Modular Components**: Easy to customize and extend for different needs
+5. **Icon Integration**: Subtle heroicons that enhance readability without being distracting
+6. **Quantified Results**: Encourages including specific metrics and outcomes for each project
+
+## Example Output
+
+See `example.typ` for a complete working example that demonstrates:
+- A senior software engineer's resume
+- Project-focused work experience entries
+- Proper use of all template features
+- Best practices for content organization
+
+## Available Components
+
+The template provides the following clean, modular components:
+
+- **`resume()`**: Main document setup with personal info in header
+- **`work-experience()`**: Work experience entries with project-focused structure
+- **`education()`**: Education entries with GPA and honors
+- **`skills-section()`**: Technical skills organized by categories
+- **`project()`**: Personal project entries with links and dates
+- **`work()`**: Simple work entry helper
+- **`generic-two-by-two()`** and **`generic-one-by-two()`**: Layout helpers
+
+## Requirements
+
+- Typst compiler
+- Heroic package (`@preview/heroic:0.1.0`) - provides heroicons for Typst (optional, only used in old examples)
+
+## License
+
+This template is released under the Unlicense - see the LICENSE file for details.
