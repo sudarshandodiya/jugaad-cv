@@ -224,6 +224,43 @@ The template provides the following clean, modular components:
 - Typst compiler
 - Heroic package (`@preview/heroic:0.1.0`) - provides heroicons for Typst (optional, only used in old examples)
 
+## Development
+
+This project uses [mise](https://mise.jdx.dev/) for task management. Available tasks:
+
+```bash
+# List all available tasks
+mise tasks
+
+# Generate documentation
+mise run doc
+
+# Run tests (requires typst-test: cargo install typst-test)
+mise run test
+
+# Update test cases (requires typst-test)
+mise run update
+
+# Package the library
+mise run package @local
+
+# Install locally
+mise run install
+
+# Install for preview
+mise run install-preview
+
+# Uninstall
+mise run uninstall
+
+# Run CI suite (docs only, or tests + docs if typst-test is installed)
+mise run ci
+```
+
+### Migration from Just
+
+This project previously used [Just](https://github.com/casey/just) for task management but has been migrated to [mise](https://mise.jdx.dev/) for better integration with development workflows. All previous Just tasks are now available as mise tasks with the same functionality.
+
 ## License
 
 This template is released under the Unlicense - see the LICENSE file for details.

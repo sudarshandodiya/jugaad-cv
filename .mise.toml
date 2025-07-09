@@ -1,0 +1,51 @@
+[env]
+TYPST_ROOT = "{{config_root}}"
+
+[tasks.default]
+description = "List available tasks"
+run = "mise tasks"
+
+[tasks.doc]
+description = "Generate manual"
+run = [
+  "typst compile docs/manual.typ docs/manual.pdf",
+  "typst compile docs/thumbnail.typ thumbnail-light.svg",
+  "typst compile --input theme=dark docs/thumbnail.typ thumbnail-dark.svg"
+]
+
+[tasks.test]
+description = "Run test suite (requires typst-test: cargo install typst-test)"
+run = "tt run"
+
+[tasks.update]
+description = "Update test cases (requires typst-test: cargo install typst-test)"
+run = "tt update"
+
+[tasks.package]
+description = "Package the library into the specified destination folder"
+run = "./scripts/package \"$@\""
+
+[tasks.install]
+description = "Install the library with the '@local' prefix"
+run = "./scripts/package '@local'"
+
+[tasks.install-preview]
+description = "Install the library with the '@preview' prefix (for pre-release testing)"
+run = "./scripts/package '@preview'"
+
+[tasks.remove]
+description = "Remove package from specified target"
+run = "./scripts/uninstall \"$@\""
+hide = true
+
+[tasks.uninstall]
+description = "Uninstall the library from the '@local' prefix"
+run = "./scripts/uninstall '@local'"
+
+[tasks.uninstall-preview]
+description = "Uninstall the library from the '@preview' prefix (for pre-release testing)"
+run = "./scripts/uninstall '@preview'"
+
+[tasks.ci]
+description = "Run CI suite (doc generation only - install typst-test for full CI)"
+depends = ["doc"]

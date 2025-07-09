@@ -19,7 +19,7 @@ exclude = [
   "scripts",
   "tests",
   ".typstignore",
-  "Justfile",
+  ".mise.toml",
   "thumbnail-dark.svg",
   "thumbnail-light.svg",
 ]

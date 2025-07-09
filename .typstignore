@@ -10,7 +10,7 @@
 .github
 scripts
 tests
-Justfile
+.mise.toml
 # PDF manuals should be included so that they can be linked, but not their sources
 docs/*
 !docs/*.pdf
